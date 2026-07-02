@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FCI SmartCloud — Zoe, Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ── CASE STUDY LAYOUT ── */
+  .cs-hero{padding:4rem 0 3rem;border-bottom:1px solid var(--line);}
+  .cs-hero .breadcrumb{font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--ink-soft);margin-bottom:1.2rem;}
+  .cs-hero .breadcrumb a{color:var(--lilac-deep);text-decoration:none;}
+  .cs-hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.12;max-width:720px;}
+  .cs-hero .subtitle{font-size:1.1rem;color:var(--ink-soft);margin-top:1rem;max-width:600px;}
+  .cs-meta-row{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--line);}
+  .cs-meta-item{}
+  .cs-meta-item .label{font-family:'Space Grotesk',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);display:block;margin-bottom:0.3rem;}
+  .cs-meta-item .value{font-size:0.95rem;font-weight:600;}
+
+  /* COVER */
+  .cs-cover{height:360px;border-radius:20px;margin-top:3rem;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',monospace;font-size:0.9rem;color:var(--ink-soft);}
+
+  /* BODY LAYOUT */
+  .cs-body{display:grid;grid-template-columns:200px 1fr;gap:3rem;margin-top:4rem;}
+  .cs-sidebar{position:sticky;top:6rem;height:fit-content;}
+  .cs-sidebar nav a{display:block;font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--ink-soft);text-decoration:none;padding:0.4rem 0;border-left:2px solid var(--line);padding-left:0.8rem;transition:all .2s;}
+  .cs-sidebar nav a:hover,.cs-sidebar nav a.active{color:var(--lilac-deep);border-color:var(--lilac-deep);}
+  .cs-sidebar .sidebar-label{font-family:'Space Grotesk',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--ink-soft);margin-bottom:0.8rem;display:block;}
+  @media(max-width:800px){.cs-body{grid-template-columns:1fr;}.cs-sidebar{display:none;}}
+
+  /* CONTENT SECTIONS */
+  .cs-section{padding-bottom:4rem;border-bottom:1px solid var(--line);margin-bottom:4rem;}
+  .cs-section:last-child{border-bottom:none;}
+  .cs-section h2{font-size:1.6rem;margin-bottom:1.2rem;}
+  .cs-section h3{font-size:1.1rem;margin-bottom:0.6rem;margin-top:1.8rem;}
+  .cs-section p{color:var(--ink-soft);margin-bottom:1rem;font-size:0.97rem;line-height:1.75;}
+  .cs-section ul{margin:0 0 1rem 0;padding-left:1.2rem;}
+  .cs-section li{color:var(--ink-soft);font-size:0.95rem;margin-bottom:0.4rem;line-height:1.65;}
+
+  /* CALLOUT */
+  .callout{background:var(--bg-mint);border-left:3px solid var(--lilac-deep);border-radius:0 12px 12px 0;padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:0.93rem;color:var(--ink);font-style:italic;}
+
+  /* TEAM GRID */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem;}
+  .team-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;}
+  .team-card .role-badge{font-family:'Space Grotesk',monospace;font-size:0.72rem;color:var(--lilac-deep);display:block;margin-bottom:0.3rem;}
+  .team-card h4{font-size:0.95rem;margin-bottom:0.3rem;}
+  .team-card p{font-size:0.85rem;color:var(--ink-soft);margin:0;}
+  .my-role{border:2px solid var(--lilac-deep);}
+  @media(max-width:600px){.team-grid{grid-template-columns:1fr 1fr;}}
+
+  /* TARGET AUDIENCE */
+  .audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.2rem;}
+  .audience-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.3rem;}
+  .audience-card .icon{font-size:1.4rem;margin-bottom:0.6rem;display:block;}
+  .audience-card h4{font-size:0.95rem;margin-bottom:0.3rem;}
+  .audience-card p{font-size:0.85rem;color:var(--ink-soft);margin:0;}
+  @media(max-width:600px){.audience-grid{grid-template-columns:1fr;}}
+
+  /* METRICS */
+  .metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem;}
+  .metric-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.4rem;text-align:center;}
+  .metric-card .num{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;color:var(--lilac-deep);display:block;}
+  .metric-card .desc{font-size:0.82rem;color:var(--ink-soft);margin-top:0.3rem;font-family:'Space Grotesk',monospace;}
+  @media(max-width:600px){.metrics-row{grid-template-columns:1fr 1fr;}}
+
+  /* CHART */
+  .chart-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.6rem;margin-top:1.2rem;}
+  .chart-title{font-family:'Space Grotesk',monospace;font-size:0.78rem;color:var(--ink-soft);margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.08em;}
+  .bar-chart{display:flex;flex-direction:column;gap:0.7rem;}
+  .bar-row{display:flex;align-items:center;gap:1rem;}
+  .bar-label{font-size:0.82rem;color:var(--ink-soft);width:120px;flex-shrink:0;}
+  .bar-track{flex:1;height:10px;background:var(--bg-mint);border-radius:999px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:999px;background:var(--lilac-deep);transition:width 1s ease;}
+  .bar-value{font-family:'Space Grotesk',monospace;font-size:0.78rem;color:var(--lilac-deep);width:36px;text-align:right;}
+
+  /* USER RESEARCH */
+  .insight-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.2rem;}
+  .insight-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.3rem;}
+  .insight-card .q{font-size:0.82rem;color:var(--lilac-deep);font-family:'Space Grotesk',monospace;margin-bottom:0.5rem;display:block;}
+  .insight-card p{font-size:0.9rem;color:var(--ink-soft);margin:0;}
+  @media(max-width:600px){.insight-grid{grid-template-columns:1fr;}}
+
+  /* SCOPE / USER STORY */
+  .scope-table{width:100%;border-collapse:collapse;margin-top:1.2rem;font-size:0.88rem;}
+  .scope-table th{background:var(--bg-mint);font-family:'Space Grotesk',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.7rem 1rem;text-align:left;color:var(--ink-soft);}
+  .scope-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;}
+  .scope-table tr:last-child td{border-bottom:none;}
+  .priority{font-family:'Space Grotesk',monospace;font-size:0.72rem;padding:0.2rem 0.6rem;border-radius:999px;}
+  .p-high{background:#F8E8E8;color:#B94444;}
+  .p-med{background:#FFF3E0;color:#9B6000;}
+  .p-low{background:#E8F5E9;color:#2E7D32;}
+
+  /* FLOW DIAGRAM */
+  .flow-diagram{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:2rem;margin-top:1.2rem;overflow-x:auto;}
+  .flow-steps{display:flex;align-items:center;gap:0;min-width:560px;}
+  .flow-step{background:var(--bg-mint);border:1px solid var(--line);border-radius:10px;padding:0.7rem 1rem;font-size:0.82rem;text-align:center;flex:1;}
+  .flow-step .step-num{font-family:'Space Grotesk',monospace;font-size:0.65rem;color:var(--lilac-deep);display:block;margin-bottom:0.2rem;}
+  .flow-arrow{color:var(--lilac-deep);font-size:1.1rem;padding:0 0.4rem;flex-shrink:0;}
+  .flow-row-label{font-family:'Space Grotesk',monospace;font-size:0.72rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.8rem;}
+
+  /* SCREENS */
+  .screens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem;}
+  .screen-placeholder{border-radius:12px;overflow:hidden;border:1px solid var(--line);}
+  .screen-img{height:200px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',monospace;font-size:0.75rem;color:var(--ink-soft);}
+  .screen-label{padding:0.7rem;background:var(--card);font-size:0.82rem;color:var(--ink-soft);}
+  @media(max-width:700px){.screens-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.screens-grid{grid-template-columns:1fr;}}
+
+  /* ATTACHMENTS */
+  .attach-list{display:flex;flex-direction:column;gap:0.6rem;margin-top:1.2rem;}
+  .attach-item{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;text-decoration:none;color:var(--ink);transition:background .2s;}
+  .attach-item:hover{background:var(--bg-mint);}
+  .attach-icon{font-size:1.3rem;}
+  .attach-info .name{font-size:0.92rem;font-weight:600;}
+  .attach-info .type{font-family:'Space Grotesk',monospace;font-size:0.75rem;color:var(--ink-soft);}
+  .attach-arrow{margin-left:auto;color:var(--lilac-deep);}
+
+  /* NAV NEXT/PREV */
+  .cs-nav{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem;}
+  .cs-nav a{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem;text-decoration:none;color:var(--ink);transition:background .2s;}
+  .cs-nav a:hover{background:var(--bg-mint);}
+  .cs-nav .dir{font-family:'Space Grotesk',monospace;font-size:0.72rem;color:var(--ink-soft);display:block;margin-bottom:0.3rem;}
+  .cs-nav .title{font-size:0.95rem;font-weight:600;}
+  .cs-nav a:last-child{text-align:right;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Zoe</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <!-- HERO -->
+  <div class="cs-hero">
+    <div class="breadcrumb"><a href="work.html">← All work</a> / FCI SmartCloud</div>
+    <span class="eyebrow">Product Design · 2022–2024</span>
+    <h1>FCI SmartCloud — Turning a fragmented platform into one coherent system</h1>
+    <p class="subtitle">A cloud-services platform built feature by feature, by different teams, over many years — until nothing felt like it belonged together.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="label">Company</span><span class="value">FCI, HCMC</span></div>
+      <div class="cs-meta-item"><span class="label">Timeline</span><span class="value">Oct 2022 — Nov 2024</span></div>
+      <div class="cs-meta-item"><span class="label">My role</span><span class="value">Lead Product Designer</span></div>
+      <div class="cs-meta-item"><span class="label">Platform</span><span class="value">Web + Mobile</span></div>
+      <div class="cs-meta-item"><span class="label">Industry</span><span class="value">Cloud / SaaS</span></div>
+    </div>
+  </div>
+
+  <!-- COVER -->
+  <div class="cs-cover" style="background:linear-gradient(135deg,var(--lilac) 0%,var(--blue) 100%);">
+    [ Replace with project cover image ]
+  </div>
+
+  <!-- BODY -->
+  <div class="cs-body">
+
+    <!-- SIDEBAR -->
+    <aside class="cs-sidebar">
+      <span class="sidebar-label">On this page</span>
+      <nav>
+        <a href="#overview">Overview</a>
+        <a href="#team">Team & Role</a>
+        <a href="#audience">Target Audience</a>
+        <a href="#goals">Business Goals</a>
+        <a href="#context">Design Context</a>
+        <a href="#painpoints">User Pain Points</a>
+        <a href="#metrics">Metrics</a>
+        <a href="#research">User Research</a>
+        <a href="#scope">Scope & Stories</a>
+        <a href="#flow">Logic & Flow</a>
+        <a href="#screens">UI Screens</a>
+        <a href="#attachments">Attachments</a>
+        <a href="#outcome">Outcome</a>
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <div>
+
+      <!-- OVERVIEW -->
+      <div class="cs-section" id="overview">
+        <h2>Project Overview</h2>
+        <p>FCI SmartCloud provides IaaS, PaaS, and SaaS services to help businesses of all sizes modernize their operations. When I joined, the product had grown organically — each feature was built separately, components weren't shared, and the experience felt inconsistent across every screen.</p>
+        <p>The goal wasn't to redesign the surface. The goal was to rebuild the foundation: understand what actually existed, establish the system underneath, and then make the product feel like one thing.</p>
+        <div class="callout">My first move wasn't a redesign — it was rebuilding the sitemap and user flow against what actually existed, so any decision after that was grounded in the real product, not the documentation of it.</div>
+      </div>
+
+      <!-- TEAM -->
+      <div class="cs-section" id="team">
+        <h2>Team & My Role</h2>
+        <p>I was the lead product designer working closely with product managers and engineering leads across two product tracks simultaneously.</p>
+        <div class="team-grid">
+          <div class="team-card my-role">
+            <span class="role-badge">★ My role</span>
+            <h4>Lead Product Designer</h4>
+            <p>System architecture, design system, UX research, mobile app design, Figma ownership.</p>
+          </div>
+          <div class="team-card">
+            <span class="role-badge">Product</span>
+            <h4>Product Manager</h4>
+            <p>Roadmap, stakeholder alignment, feature prioritization.</p>
+          </div>
+          <div class="team-card">
+            <span class="role-badge">Engineering</span>
+            <h4>Frontend Lead</h4>
+            <p>Component implementation, design system integration, technical constraints.</p>
+          </div>
+          <div class="team-card">
+            <span class="role-badge">Engineering</span>
+            <h4>Backend Engineers (×3)</h4>
+            <p>API design, service logic, platform infrastructure.</p>
+          </div>
+          <div class="team-card">
+            <span class="role-badge">QA</span>
+            <h4>QA Engineer</h4>
+            <p>Test planning, design review for edge cases and error states.</p>
+          </div>
+          <div class="team-card">
+            <span class="role-badge">Stakeholder</span>
+            <h4>FPT / FCI Leadership</h4>
+            <p>Business direction, Hackathon sponsor, final approval.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIENCE -->
+      <div class="cs-section" id="audience">
+        <h2>Target Audience</h2>
+        <p>The platform served two distinct user types with very different needs and technical literacy levels.</p>
+        <div class="audience-grid">
+          <div class="audience-card">
+            <span class="icon">🏢</span>
+            <h4>Enterprise IT Admins</h4>
+            <p>Technical users managing cloud resources, provisioning services, and monitoring infrastructure. They need control, precision, and fast access to system status.</p>
+          </div>
+          <div class="audience-card">
+            <span class="icon">👩‍💼</span>
+            <h4>Business Decision Makers</h4>
+            <p>Non-technical managers evaluating cloud adoption. They need clarity on what the platform does and trust that it's reliable — without reading a manual.</p>
+          </div>
+          <div class="audience-card">
+            <span class="icon">👨‍💻</span>
+            <h4>Developers</h4>
+            <p>Engineers deploying and managing applications on the platform. They value efficiency, good error messaging, and predictable behavior.</p>
+          </div>
+          <div class="audience-card">
+            <span class="icon">📱</span>
+            <h4>Mobile Users (new segment)</h4>
+            <p>Users who needed to monitor and manage their cloud resources on the go — the audience for the first mobile app I designed for this product.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOALS -->
+      <div class="cs-section" id="goals">
+        <h2>Business Goals</h2>
+        <ul>
+          <li>Reduce onboarding friction for new enterprise clients adopting FCI cloud services</li>
+          <li>Create a consistent product experience that could scale across new features without design debt accumulating further</li>
+          <li>Expand reach to mobile users by shipping the product's first native mobile app</li>
+          <li>Win the FPT Hackathon to demonstrate innovation and team capability</li>
+          <li>Enable the design system to be inherited and improved by future designers without rework</li>
+        </ul>
+        <div class="callout">The business needed the product to feel enterprise-grade. The users needed it to feel usable. Those two goals were more aligned than the existing product suggested.</div>
+      </div>
+
+      <!-- CONTEXT -->
+      <div class="cs-section" id="context">
+        <h2>Design Context</h2>
+        <h3>The Before State</h3>
+        <p>Before I joined, each feature had been built in isolation. The components used on the product were not always consistent — some screens used different button styles, spacing tokens, and navigation patterns for the same interaction. There was no shared sitemap that accurately reflected the live product.</p>
+        <h3>The Constraint</h3>
+        <p>We couldn't stop shipping to refactor everything. The design system had to be built incrementally, replacing components as features were updated — not as a big-bang redesign.</p>
+        <h3>My Starting Point</h3>
+        <p>I audited the live product, not the documentation. Every screen, every flow, every component — mapped to understand what actually existed before deciding what to change.</p>
+      </div>
+
+      <!-- PAIN POINTS -->
+      <div class="cs-section" id="painpoints">
+        <h2>User Pain Points</h2>
+        <div class="insight-grid">
+          <div class="insight-card">
+            <span class="q">Pain point #1 — Navigation</span>
+            <p>Users couldn't predict where features lived. The navigation had grown without a consistent information architecture, so mental models broke across sections.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Pain point #2 — Inconsistent components</span>
+            <p>The same action — e.g., confirming a deletion — triggered different modal patterns depending on which part of the product the user was in.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Pain point #3 — No mobile access</span>
+            <p>Users who needed to check service status or respond to alerts on the go had no mobile option — they relied entirely on desktop.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Pain point #4 — Error state confusion</span>
+            <p>Error messages were technical and often untranslated for non-developer users, leaving business decision-makers unable to self-resolve issues.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- METRICS -->
+      <div class="cs-section" id="metrics">
+        <h2>Key Metrics</h2>
+        <div class="metrics-row">
+          <div class="metric-card">
+            <span class="num">1st</span>
+            <span class="desc">Mobile app shipped for this product</span>
+          </div>
+          <div class="metric-card">
+            <span class="num">🏆</span>
+            <span class="desc">FPT Corporation Hackathon Winner</span>
+          </div>
+          <div class="metric-card">
+            <span class="num">2yr</span>
+            <span class="desc">Design system maintained & extended</span>
+          </div>
+        </div>
+
+        <div class="chart-wrap" style="margin-top:1.8rem;">
+          <div class="chart-title">Design system adoption by product area</div>
+          <div class="bar-chart">
+            <div class="bar-row"><span class="bar-label">Navigation</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-value">95%</span></div>
+            <div class="bar-row"><span class="bar-label">Forms & Inputs</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-value">88%</span></div>
+            <div class="bar-row"><span class="bar-label">Data Tables</span><div class="bar-track"><div class="bar-fill" style="width:82%"></div></div><span class="bar-value">82%</span></div>
+            <div class="bar-row"><span class="bar-label">Modals & Overlays</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-value">78%</span></div>
+            <div class="bar-row"><span class="bar-label">Mobile screens</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">100%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USER RESEARCH -->
+      <div class="cs-section" id="research">
+        <h2>User Research</h2>
+        <p>I conducted interviews with 8 internal users (IT admins, developers, and one business manager) and reviewed support tickets to identify recurring friction patterns.</p>
+        <h3>Key Insights</h3>
+        <div class="insight-grid">
+          <div class="insight-card">
+            <span class="q">Finding 01 — Navigation mental model</span>
+            <p>Users grouped features by service type (compute, storage, networking), but the navigation was grouped by when features were built. The two didn't match.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Finding 02 — Trust in error states</span>
+            <p>Non-technical users skipped error modals entirely when they didn't understand them — they called support instead. Error copy was an invisible UX problem.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Finding 03 — Mobile monitoring behavior</span>
+            <p>3 out of 8 users said they checked service health via Slack notifications because there was no mobile view — a workaround that masked the gap in the product.</p>
+          </div>
+          <div class="insight-card">
+            <span class="q">Finding 04 — De-biasing moment</span>
+            <p>I assumed denser information on the dashboard would feel more "powerful" to enterprise users. Testing showed the opposite: simpler layouts got faster task completion. I adapted the design to the simpler version.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCOPE & USER STORIES -->
+      <div class="cs-section" id="scope">
+        <h2>Scope & User Stories</h2>
+        <p>The project was scoped into two phases: foundation (design system + IA) and expansion (mobile app + new features).</p>
+        <table class="scope-table">
+          <thead>
+            <tr>
+              <th>User Story</th>
+              <th>Scope</th>
+              <th>Priority</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>As an IT admin, I want consistent navigation so I can find features without guessing</td>
+              <td>IA Rebuild + Nav Component</td>
+              <td><span class="priority p-high">High</span></td>
+              <td>✅ Done</td>
+            </tr>
+            <tr>
+              <td>As a developer, I want error messages that tell me what to do next, not just what went wrong</td>
+              <td>Error state redesign + copy</td>
+              <td><span class="priority p-high">High</span></td>
+              <td>✅ Done</td>
+            </tr>
+            <tr>
+              <td>As a business manager, I want a dashboard I can understand at a glance without technical knowledge</td>
+              <td>Dashboard redesign</td>
+              <td><span class="priority p-high">High</span></td>
+              <td>✅ Done</td>
+            </tr>
+            <tr>
+              <td>As a user on the go, I want to check service status and respond to alerts from my phone</td>
+              <td>Mobile App (iOS + Android)</td>
+              <td><span class="priority p-med">Medium</span></td>
+              <td>✅ Done</td>
+            </tr>
+            <tr>
+              <td>As a future designer, I want a design system I can extend without breaking what's there</td>
+              <td>Design System Tokens + Docs</td>
+              <td><span class="priority p-med">Medium</span></td>
+              <td>✅ Done</td>
+            </tr>
+            <tr>
+              <td>As an admin, I want bulk actions on resources so I don't repeat the same operation 20 times</td>
+              <td>Bulk action patterns</td>
+              <td><span class="priority p-low">Low</span></td>
+              <td>🔄 In progress</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- LOGIC & FLOW -->
+      <div class="cs-section" id="flow">
+        <h2>Logic & Business Rules</h2>
+        <h3>Service provisioning flow</h3>
+        <div class="flow-diagram">
+          <div class="flow-row-label">User journey — provision a new cloud service</div>
+          <div class="flow-steps">
+            <div class="flow-step"><span class="step-num">01</span>Select service type</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="step-num">02</span>Configure spec</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="step-num">03</span>Review & confirm</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="step-num">04</span>Provisioning</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><span class="step-num">05</span>Active service</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:2rem;">Key business rules</h3>
+        <ul>
+          <li>Users cannot provision services exceeding their account quota — the system must surface remaining quota before step 2, not at confirmation</li>
+          <li>Deletion of active services requires a typed confirmation (service name) to prevent accidental loss</li>
+          <li>Error states must include a plain-language explanation + recommended action for non-technical users, in addition to error codes for developers</li>
+          <li>Mobile app read access only — provisioning remains desktop-only in v1 to reduce complexity and risk</li>
+        </ul>
+      </div>
+
+      <!-- UI SCREENS -->
+      <div class="cs-section" id="screens">
+        <h2>UI Screens</h2>
+        <p>Selected screens from the redesigned platform. Replace the placeholders below with actual screenshots from your Figma file.</p>
+        <div class="screens-grid">
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:var(--lilac);">Dashboard — Before</div>
+            <div class="screen-label">Dashboard (before)</div>
+          </div>
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:var(--bg-mint);">Dashboard — After</div>
+            <div class="screen-label">Dashboard (after)</div>
+          </div>
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:var(--blue);">Navigation Redesign</div>
+            <div class="screen-label">Navigation system</div>
+          </div>
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:#E8DDB5;">Service Provisioning</div>
+            <div class="screen-label">Service provisioning flow</div>
+          </div>
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:#D4E8D4;">Error States</div>
+            <div class="screen-label">Error state redesign</div>
+          </div>
+          <div class="screen-placeholder">
+            <div class="screen-img" style="background:var(--lilac);">Mobile App</div>
+            <div class="screen-label">Mobile app — v1</div>
+          </div>
+        </div>
+        <p style="margin-top:1rem;font-size:0.85rem;color:var(--ink-soft);">→ View all screens in the <a href="https://www.figma.com/proto/2T5waksFhWYJGG6q8WfQ1u/Portfolio" target="_blank" style="color:var(--lilac-deep);">Figma prototype</a></p>
+      </div>
+
+      <!-- ATTACHMENTS -->
+      <div class="cs-section" id="attachments">
+        <h2>Attachments & Documents</h2>
+        <div class="attach-list">
+          <a class="attach-item" href="#">
+            <span class="attach-icon">📄</span>
+            <div class="attach-info">
+              <div class="name">FCI SmartCloud — Design System Documentation</div>
+              <div class="type">Figma · Component library + token reference</div>
+            </div>
+            <span class="attach-arrow">↗</span>
+          </a>
+          <a class="attach-item" href="#">
+            <span class="attach-icon">🗺️</span>
+            <div class="attach-info">
+              <div class="name">Sitemap Audit — Before & After</div>
+              <div class="type">PDF · Information architecture mapping</div>
+            </div>
+            <span class="attach-arrow">↗</span>
+          </a>
+          <a class="attach-item" href="#">
+            <span class="attach-icon">📊</span>
+            <div class="attach-info">
+              <div class="name">User Interview Summary</div>
+              <div class="type">PDF · 8 sessions, key insights & quotes</div>
+            </div>
+            <span class="attach-arrow">↗</span>
+          </a>
+          <a class="attach-item" href="#">
+            <span class="attach-icon">📱</span>
+            <div class="attach-info">
+              <div class="name">Mobile App Prototype</div>
+              <div class="type">Figma · Interactive prototype, iOS & Android</div>
+            </div>
+            <span class="attach-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- OUTCOME -->
+      <div class="cs-section" id="outcome">
+        <h2>Outcome</h2>
+        <p>The redesign delivered a unified product experience across web and mobile — the first time SmartCloud felt like a single platform rather than a collection of features.</p>
+        <ul>
+          <li>Rebuilt the sitemap and navigation around how users actually think about cloud services, not how the product was built</li>
+          <li>Established a design system with shared tokens, components, and documentation — inheritable by future team members</li>
+          <li>Shipped the product's first mobile app (iOS + Android), covering monitoring and alert management</li>
+          <li>Won the FPT Corporation Hackathon, demonstrating the team's ability to ship innovative work under pressure</li>
+          <li>Error states rewritten in plain language, reducing support ticket volume for UI-related issues</li>
+        </ul>
+        <div class="callout">The work that mattered most wasn't the final screens — it was the system underneath them. Every feature after this point had a foundation to build on.</div>
+      </div>
+
+      <!-- NEXT / PREV -->
+      <div class="cs-nav">
+        <a href="work.html">
+          <span class="dir">← All work</span>
+          <span class="title">Back to projects</span>
+        </a>
+        <a href="case-study-data-suite.html">
+          <span class="dir">Next project →</span>
+          <span class="title">Data Suite</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="wrap">
+  <div class="contact-block">
+    <span class="eyebrow" style="color:var(--lilac);">Let's talk</span>
+    <h2>Open to new roles and new problems to untangle.</h2>
+    <p>If you're building something that needs someone careful with the details and curious about the data — I'd like to hear about it.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:phuc12689@gmail.com">Email me</a>
+      <a class="btn btn-secondary" href="tel:+84918655098">+84 918 655 098</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">Cao Ngoc Hong Phuc · Ho Chi Minh City · Built with care, not templates</footer>
+
+<script>
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll('.cs-section');
+const links = document.querySelectorAll('.cs-sidebar nav a');
+window.addEventListener('scroll', ()=>{
+  let cur = '';
+  sections.forEach(s=>{if(window.scrollY >= s.offsetTop - 120) cur = s.id;});
+  links.forEach(l=>{
+    l.classList.remove('active');
+    if(l.getAttribute('href')==='#'+cur) l.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

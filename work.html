@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Zoe, Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-hero{padding:4rem 0 2rem;}
+  .page-hero h1{font-size:clamp(2rem,5vw,3rem);line-height:1.15;max-width:640px;}
+  .page-hero p{color:var(--ink-soft);margin-top:1rem;max-width:520px;font-size:1.05rem;}
+
+  /* FILTER */
+  .filter-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:2rem;}
+  .filter-btn{font-family:'Space Grotesk',monospace;font-size:0.78rem;padding:0.45rem 1rem;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;transition:all .2s;}
+  .filter-btn:hover,.filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  /* PROJECT LIST */
+  .project-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:2.5rem;}
+  .project-row{background:var(--card);display:grid;grid-template-columns:200px 1fr auto;gap:2rem;padding:2rem;align-items:center;text-decoration:none;color:var(--ink);transition:background .2s;}
+  .project-row:hover{background:var(--bg-mint);}
+  .pr-thumb{height:110px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',monospace;font-size:0.72rem;color:var(--ink-soft);}
+  .pr-meta{}
+  .pr-tag{font-family:'Space Grotesk',monospace;font-size:0.72rem;color:var(--lilac-deep);display:block;margin-bottom:0.4rem;}
+  .pr-meta h3{font-size:1.2rem;margin-bottom:0.5rem;}
+  .pr-meta p{font-size:0.9rem;color:var(--ink-soft);max-width:480px;}
+  .pr-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;}
+  .pr-pill{font-family:'Space Grotesk',monospace;font-size:0.72rem;padding:0.3rem 0.7rem;border-radius:999px;background:var(--bg-mint);border:1px solid var(--line);}
+  .pr-arrow{font-size:1.3rem;color:var(--lilac-deep);white-space:nowrap;}
+  @media(max-width:700px){
+    .project-row{grid-template-columns:1fr;gap:1rem;}
+    .pr-thumb{height:140px;}
+    .pr-arrow{display:none;}
+  }
+
+  /* SKILLS STRIP */
+  .skills-strip{background:var(--bg-mint);border-radius:20px;padding:2rem;margin-top:3rem;display:flex;gap:2.5rem;flex-wrap:wrap;align-items:flex-start;}
+  .skills-strip h3{font-size:1rem;margin-bottom:0.8rem;}
+  .tag{font-family:'Space Grotesk',monospace;font-size:0.8rem;padding:0.4rem 0.85rem;border-radius:999px;background:var(--card);border:1px solid var(--line);display:inline-block;margin:0.25rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Zoe</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="about.html">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="page-hero">
+    <span class="eyebrow">All projects</span>
+    <h1>Eight years of problems I was glad to have.</h1>
+    <p>From outsourced F&B apps to enterprise cloud platforms — each project taught me a different way to be careful.</p>
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filter(this,'all')">All</button>
+      <button class="filter-btn" onclick="filter(this,'product')">Product Design</button>
+      <button class="filter-btn" onclick="filter(this,'ux')">UX/UI</button>
+      <button class="filter-btn" onclick="filter(this,'graphic')">Graphic & UI</button>
+    </div>
+  </div>
+
+  <div class="project-list">
+
+    <a class="project-row" href="case-study-fci-smartcloud.html" data-type="product">
+      <div class="pr-thumb" style="background:var(--lilac);">SmartCloud</div>
+      <div class="pr-meta">
+        <span class="pr-tag">Product Design · Oct 2022 — Nov 2024 · FCI, HCMC</span>
+        <h3>FCI SmartCloud</h3>
+        <p>Unified a fragmented IaaS/PaaS/SaaS platform — rebuilt sitemap, design system, and shipped the product's first mobile app. Won FPT Hackathon.</p>
+        <div class="pr-tags">
+          <span class="pr-pill">Design System</span>
+          <span class="pr-pill">Information Architecture</span>
+          <span class="pr-pill">Mobile App</span>
+          <span class="pr-pill">Cloud Platform</span>
+        </div>
+      </div>
+      <div class="pr-arrow">→</div>
+    </a>
+
+    <a class="project-row" href="case-study-data-suite.html" data-type="product">
+      <div class="pr-thumb" style="background:var(--blue);">Data Suite</div>
+      <div class="pr-meta">
+        <span class="pr-tag">Product Design · Oct 2022 — Feb 2024 · FCI, HCMC</span>
+        <h3>Data Suite</h3>
+        <p>Built the design system and visual language for a complex all-in-one data platform — charts, reports, data modelling, and tax tooling (MAjust).</p>
+        <div class="pr-tags">
+          <span class="pr-pill">Design System</span>
+          <span class="pr-pill">Data Visualisation</span>
+          <span class="pr-pill">SaaS</span>
+          <span class="pr-pill">Enterprise</span>
+        </div>
+      </div>
+      <div class="pr-arrow">→</div>
+    </a>
+
+    <a class="project-row" href="case-study-pizza-hut.html" data-type="ux">
+      <div class="pr-thumb" style="background:#E8DDB5;">Pizza Hut</div>
+      <div class="pr-meta">
+        <span class="pr-tag">UX/UI Design · Jul 2018 — Mar 2022 · YUM, HCMC</span>
+        <h3>Pizza Hut Digital Ventures</h3>
+        <p>Designed a consistent cross-market order flow for the Pizza Hut Master App, backed by user behavior research across Asian markets.</p>
+        <div class="pr-tags">
+          <span class="pr-pill">User Research</span>
+          <span class="pr-pill">Cross-market</span>
+          <span class="pr-pill">Food-tech</span>
+          <span class="pr-pill">App Design</span>
+        </div>
+      </div>
+      <div class="pr-arrow">→</div>
+    </a>
+
+    <a class="project-row" href="case-study-glite.html" data-type="graphic">
+      <div class="pr-thumb" style="background:#D4E8D4;">Glite</div>
+      <div class="pr-meta">
+        <span class="pr-tag">UI & Graphic Design · Apr 2016 — Jul 2018 · Glite, HCMC</span>
+        <h3>Glite — F&B Operations Design</h3>
+        <p>Designed the core operational apps for the Pizza Hut chain — POS, KDS, Dine-In, and Driver App — in a fast-moving outsource environment.</p>
+        <div class="pr-tags">
+          <span class="pr-pill">POS Design</span>
+          <span class="pr-pill">Operations Apps</span>
+          <span class="pr-pill">F&B</span>
+          <span class="pr-pill">Graphic Design</span>
+        </div>
+      </div>
+      <div class="pr-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-strip">
+    <div>
+      <h3>Ways of working</h3>
+      <span class="tag">Time Management</span>
+      <span class="tag">Critical Thinking</span>
+      <span class="tag">Prototyping</span>
+      <span class="tag">User Empathy</span>
+      <span class="tag">Product Design</span>
+      <span class="tag">Problem Solving</span>
+      <span class="tag">Information Architecture</span>
+      <span class="tag">Growth Mindset</span>
+    </div>
+    <div>
+      <h3>Tools</h3>
+      <span class="tag">Figma</span>
+      <span class="tag">Sketch</span>
+      <span class="tag">Zeplin</span>
+      <span class="tag">Miro</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Monday</span>
+      <span class="tag">Adobe Suite</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="padding-bottom:0;">
+  <div class="contact-block">
+    <span class="eyebrow" style="color:var(--lilac);">Let's talk</span>
+    <h2>Open to new roles and new problems to untangle.</h2>
+    <p>If you're building something that needs someone careful with the details and curious about the data — I'd like to hear about it.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:phuc12689@gmail.com">Email me</a>
+      <a class="btn btn-secondary" href="tel:+84918655098">+84 918 655 098</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">Cao Ngoc Hong Phuc · Ho Chi Minh City · Built with care, not templates</footer>
+
+<script>
+function filter(btn, type){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-row').forEach(row=>{
+    if(type==='all'||row.dataset.type===type){
+      row.style.display='grid';
+    } else {
+      row.style.display='none';
+    }
+  });
+}
+</script>
+</body>
+</html>

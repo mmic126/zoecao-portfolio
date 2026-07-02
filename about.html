@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Zoe, Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .about-hero{padding:4rem 0 2rem;display:grid;grid-template-columns:1fr 340px;gap:3rem;align-items:start;}
+  .about-hero h1{font-size:clamp(2rem,5vw,2.8rem);line-height:1.15;}
+  .about-hero .lead{color:var(--ink-soft);margin-top:1rem;font-size:1.05rem;line-height:1.75;}
+  .about-photo{background:linear-gradient(135deg,var(--lilac),var(--blue));border-radius:20px;height:380px;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--ink-soft);}
+  @media(max-width:720px){.about-hero{grid-template-columns:1fr;}.about-photo{height:240px;order:-1;}}
+
+  .philosophy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:1.5rem;}
+  .p-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;}
+  .p-card .mark{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+  .p-card h3{font-size:1rem;margin-bottom:0.5rem;}
+  .p-card p{font-size:0.9rem;color:var(--ink-soft);margin:0;}
+  @media(max-width:600px){.philosophy-grid{grid-template-columns:1fr;}}
+
+  .edu-item{padding:1rem 0;border-bottom:1px solid var(--line);}
+  .edu-item:last-child{border-bottom:none;}
+  .edu-item h3{font-size:1rem;font-weight:600;}
+  .edu-item .school{font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--lilac-deep);display:block;margin-bottom:0.2rem;}
+  .edu-item p{font-size:0.88rem;color:var(--ink-soft);margin-top:0.2rem;}
+
+  .exp-timeline{margin-top:1.5rem;}
+  .exp-item{display:grid;grid-template-columns:140px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--line);}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-dates{font-family:'Space Grotesk',monospace;font-size:0.78rem;color:var(--ink-soft);padding-top:0.2rem;}
+  .exp-content h3{font-size:1rem;font-weight:600;margin-bottom:0.2rem;}
+  .exp-content .company{font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--lilac-deep);display:block;margin-bottom:0.4rem;}
+  .exp-content p{font-size:0.88rem;color:var(--ink-soft);margin:0;}
+  @media(max-width:560px){.exp-item{grid-template-columns:1fr;gap:0.4rem;}}
+
+  .skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:0.8rem;}
+  .tag{font-family:'Space Grotesk',monospace;font-size:0.8rem;padding:0.45rem 0.9rem;border-radius:999px;background:var(--card);border:1px solid var(--line);}
+  @media(max-width:560px){.skills-wrap{grid-template-columns:1fr;}}
+
+  blockquote{font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:1.3rem;color:var(--lilac-deep);border-left:2px solid var(--lilac);padding-left:1.2rem;margin:1.5rem 0;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Zoe</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="about.html" class="active">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="about-hero">
+    <div>
+      <span class="eyebrow">About me</span>
+      <h1>A translator, before a designer.</h1>
+      <p class="lead">I studied Translation and Interpretation before moving into design — which is probably why I still treat every product like a language someone has to learn quickly. Translating between two spoken languages and translating complex technical logic into a human interface aren't so different: both require understanding who's on the receiving end before you choose your words.</p>
+      <p class="lead" style="margin-top:1rem;">Eight years later, I'm still doing that — across cloud platforms, data tools, food-tech, and F&B operations apps.</p>
+      <blockquote>"When I have free time, I often come up with ideas for 'if I'm unemployed in the future' and explore niche hobbies. I am a mother to a little son, a continuous runner against the waves of change, and a designer who trusts data over assumptions."</blockquote>
+    </div>
+    <div class="about-photo">[ Your photo here ]</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <span class="eyebrow">How I work</span>
+  <h2 style="font-size:1.8rem;">The values I don't compromise on.</h2>
+  <div class="philosophy-grid">
+    <div class="p-card">
+      <div class="mark" style="background:var(--lilac);">🔎</div>
+      <h3>Multiple perspectives, on purpose</h3>
+      <p>I assume my first read of a problem is incomplete. Before committing to a direction, I look at it from the user's, the business's, and the engineer's seat.</p>
+    </div>
+    <div class="p-card">
+      <div class="mark" style="background:var(--blue);">📊</div>
+      <h3>Data over opinion</h3>
+      <p>I enjoy researching how people actually behave, not how we assume they behave. When a decision is contested, I look for evidence before I look for consensus.</p>
+    </div>
+    <div class="p-card">
+      <div class="mark" style="background:var(--bg-mint);border:1px solid var(--line);">🧩</div>
+      <h3>Systems, not screens</h3>
+      <p>A good screen on a broken system is a short-term fix. I'd rather spend a week on the sitemap and the design system than a day on a single flow.</p>
+    </div>
+    <div class="p-card">
+      <div class="mark" style="background:var(--lilac-deep);color:#fff;">🌱</div>
+      <h3>Cautious, then curious</h3>
+      <p>I'm careful before I'm fast. I'd rather ask one more question than ship one wrong assumption. But once the ground is solid, I keep moving.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <span class="eyebrow">Experience</span>
+  <h2 style="font-size:1.8rem;">The journey so far.</h2>
+  <div class="exp-timeline">
+    <div class="exp-item">
+      <div class="exp-dates">Oct 2022<br>Nov 2024</div>
+      <div class="exp-content">
+        <h3>Product Design — FCI SmartCloud & Data Suite</h3>
+        <span class="company">FCI, Ho Chi Minh City</span>
+        <p>Rebuilt fragmented IaaS/PaaS/SaaS platform into a coherent system. Designed and shipped the product's first mobile app. Won FPT Corporation Hackathon. Built the design system for Data Suite from the ground up.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dates">Jul 2018<br>Mar 2022</div>
+      <div class="exp-content">
+        <h3>UX/UI Design</h3>
+        <span class="company">Pizza Hut Digital Ventures — YUM, Ho Chi Minh City</span>
+        <p>Researched and designed cross-market order flows for the Pizza Hut Master App across Asian markets. Led UX for a people-first, data-driven digital product team.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dates">Apr 2016<br>Jul 2018</div>
+      <div class="exp-content">
+        <h3>UI & Graphic Design</h3>
+        <span class="company">Glite, Ho Chi Minh City</span>
+        <p>Designed key operational apps for the Pizza Hut chain: POS, KDS, Dine-In, and Driver App. Supported clients case by case in a fast-moving outsource environment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <span class="eyebrow">Education</span>
+  <h2 style="font-size:1.8rem;margin-bottom:1.5rem;">How I got here.</h2>
+  <div class="edu-item">
+    <span class="school">HUFLIT University</span>
+    <h3>Bachelor in Translation and Interpretation</h3>
+    <p>The foundation that taught me to see every communication problem from both sides — the sender's intent and the receiver's understanding.</p>
+  </div>
+  <div class="edu-item">
+    <span class="school">ARENA Multimedia Center</span>
+    <h3>Certificate in Branding Design, Web Design, Film Editing & 3D Character Modeling</h3>
+  </div>
+  <div class="edu-item">
+    <span class="school">YOUIX — Design & Technology Education</span>
+    <h3>Certificate in UI Global Style, UX Component, Advanced UI/UX</h3>
+  </div>
+  <div class="edu-item">
+    <span class="school">Coursera — Google</span>
+    <h3>UX Design Certificate</h3>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <span class="eyebrow">Toolkit</span>
+  <h2 style="font-size:1.8rem;">What I bring to a team.</h2>
+  <div class="skills-wrap">
+    <div>
+      <h3 style="font-size:0.9rem;font-family:'Space Grotesk',monospace;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);">Ways of working</h3>
+      <div class="skill-tags">
+        <span class="tag">Time Management</span><span class="tag">Critical Thinking</span>
+        <span class="tag">Prototyping</span><span class="tag">User Empathy</span>
+        <span class="tag">Product Design</span><span class="tag">Problem Solving</span>
+        <span class="tag">Information Architecture</span><span class="tag">Growth Mindset</span>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:0.9rem;font-family:'Space Grotesk',monospace;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);">Tools</h3>
+      <div class="skill-tags">
+        <span class="tag">Figma</span><span class="tag">Sketch</span>
+        <span class="tag">Zeplin</span><span class="tag">Miro</span>
+        <span class="tag">Jira</span><span class="tag">Monday</span>
+        <span class="tag">Adobe Suite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:0;">
+  <div class="contact-block">
+    <span class="eyebrow" style="color:var(--lilac);">Let's talk</span>
+    <h2>Open to new roles and new problems to untangle.</h2>
+    <p>If you're building something that needs someone careful with the details and curious about the data — I'd like to hear about it.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:phuc12689@gmail.com">Email me</a>
+      <a class="btn btn-secondary" href="tel:+84918655098">+84 918 655 098</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">Cao Ngoc Hong Phuc · Ho Chi Minh City · Built with care, not templates</footer>
+</body>
+</html>
