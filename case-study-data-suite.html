@@ -6,7 +6,63 @@
 <title>Case Study — Zoe, Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+/* ===== TOKENS ===== */
+:root{
+  --bg:#F9F8F6;
+  --bg-mint:#F2F5F3;
+  --ink:#1E2424;
+  --ink-soft:#454F4F;
+  --lilac:#E2D4E7;
+  --lilac-deep:#7A5A8C;
+  --blue:#D0E1FD;
+  --blue-deep:#3C5F8F;
+  --line:#DAD6CD;
+  --card:#FFFFFF;
+  --radius:18px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;border-radius:var(--radius);}
+
+.eyebrow{font-family:'Space Grotesk',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--lilac-deep);margin-bottom:0.6rem;display:block;}
+.wrap{max-width:960px;margin:0 auto;padding:0 1.8rem;}
+section{max-width:960px;margin:0 auto;padding:5rem 1.8rem;}
+.divider{max-width:960px;margin:0 auto;height:1px;background:var(--line);}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(249,248,246,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:960px;margin:0 auto;padding:1.1rem 1.8rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-inner .logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:700;text-decoration:none;color:var(--ink);}
+.nav-links{display:flex;gap:1.8rem;font-size:0.85rem;font-family:'Space Grotesk',monospace;}
+.nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--lilac-deep);}
+@media(max-width:560px){.nav-links{gap:1rem;font-size:0.72rem;}}
+
+/* BUTTONS */
+.btn{font-family:'Space Grotesk',monospace;font-size:0.85rem;padding:0.8rem 1.5rem;border-radius:999px;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;}
+.btn:hover{transform:translateY(-2px);}
+.btn-primary{background:var(--ink);color:#fff;}
+.btn-secondary{border:1px solid var(--ink);color:var(--ink);background:transparent;}
+.btn-ghost{border:1px solid var(--line);color:var(--ink-soft);background:transparent;}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+
+/* FOOTER */
+.site-footer{text-align:center;font-family:'Space Grotesk',monospace;font-size:0.8rem;color:var(--ink-soft);padding:2rem 1.8rem 3rem;}
+
+/* CONTACT BLOCK */
+.contact-block{background:var(--ink);color:var(--bg);border-radius:24px;margin:0 1.8rem 4rem;padding:3.5rem 2.5rem;text-align:center;}
+.contact-block h2{font-size:clamp(1.7rem,4vw,2.4rem);color:var(--bg);}
+.contact-block p{color:#D4DADA;max-width:480px;margin:1rem auto 2rem;}
+.contact-block .cta-row{justify-content:center;}
+.contact-block .btn-primary{background:var(--lilac);color:var(--ink);}
+.contact-block .btn-secondary{border-color:var(--bg);color:var(--bg);}
+
+</style>
 </head>
 <body>
 <nav>
