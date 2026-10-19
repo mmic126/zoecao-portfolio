@@ -136,6 +136,7 @@
 .zc-btn--toggle { font-size: 12px; line-height: 18px; font-weight: 400; padding: 7px var(--space-4); }
 .zc-btn--toggle[aria-pressed="true"] { background: var(--button); border-color: var(--button); color: var(--neutral-0); }
 .zc-btn--sm { padding: 6px var(--space-4); font-size: 12px; }
+.zc-btn[aria-busy="true"] { cursor: progress; opacity: .7; }
 .zc-btn:disabled, .zc-btn[aria-disabled="true"] { color: var(--text-muted); border-color: var(--border); background: var(--neutral-0); cursor: not-allowed; }
 
 /* Link — variant: default | back | underline */
@@ -172,7 +173,7 @@ select.zc-field__control:invalid { color: var(--text-muted); }
 select.zc-field__control option { color: var(--text); }
 .zc-field.is-invalid .zc-field__control { border-color: var(--danger-700); }
 .zc-field__error { font-size: 12px; line-height: 18px; color: var(--danger-700); }
-.zc-field--checkbox { flex-direction: row; align-items: center; gap: var(--space-3); cursor: pointer; }
+.zc-field--checkbox { display: inline-flex; flex-direction: row; font-size: 14px; line-height: 20px; color: var(--text); align-items: center; gap: var(--space-3); cursor: pointer; }
 .zc-field--checkbox .zc-field__control { appearance: none; -webkit-appearance: none; width: 20px; height: 20px; margin: 0; padding: 0; border: 1.5px solid var(--neutral-300); box-shadow: none; display: inline-grid; place-content: center; cursor: pointer; flex: none; }
 .zc-field--checkbox .zc-field__control::after { content: ""; width: 10px; height: 6px; border-left: 2px solid var(--neutral-0); border-bottom: 2px solid var(--neutral-0); transform: rotate(-45deg) translate(1px, -1px); opacity: 0; }
 .zc-field--checkbox .zc-field__control:checked { background: var(--button); border-color: var(--button); }
@@ -191,6 +192,7 @@ select.zc-field__control option { color: var(--text); }
 /* Notice — tone: success */
 .zc-notice { display: flex; align-items: center; gap: var(--space-3); border-radius: var(--radius-sm); padding: var(--space-3) var(--space-4); font-size: 14px; line-height: 22px; }
 .zc-notice--success { background: var(--success-100); color: var(--success-700); }
+.zc-notice--danger { background: var(--danger-100); color: var(--danger-700); }
 
 /* =========================================================
    MOLECULES — SectionHead · PullQuote · InfoStrip · Meter · ButtonGroup · TableOfContents · FlowDiagram · Gallery
@@ -384,6 +386,8 @@ select.zc-field__control option { color: var(--text); }
 
 /* ContactForm — Fields, a ButtonGroup-free footer row, a Notice */
 .zc-form { background: var(--bg-subtle); border-radius: var(--radius-lg); padding: var(--space-8); display: flex; flex-direction: column; gap: var(--space-6); }
+.zc-form__honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.zc-form { position: relative; }
 .zc-form__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); }
 .zc-form__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); }
 @media (max-width: 560px) { .zc-form { padding: var(--space-6) var(--space-4); } .zc-form__row { grid-template-columns: 1fr; } }
@@ -549,9 +553,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <label class="zc-field zc-field--checkbox"><input class="zc-field__control" type="checkbox" id="c-consent" name="consent" required> <span>You agree to our friendly <a class="zc-link zc-link--underline" href="#contact">Privacy Policy</a></span></label>
     <button class="zc-btn zc-btn--primary" type="submit">Send Message <i data-icon="send"></i></button>
   </div>
-  <p class="zc-notice zc-notice--success" role="status" id="contact-form-done" hidden><i data-icon="check"></i> <span>Everything’s filled in. Sending from this preview isn’t connected yet, so please email the same message to admin@zoecao.com.</span></p>
+  <input class="zc-form__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <p class="zc-notice zc-notice--success" role="status" id="contact-form-done" hidden><i data-icon="check"></i> <span>Thanks — your message is on its way. I’ll get back to you soon.</span></p>
+  <p class="zc-notice zc-notice--danger" role="status" id="contact-form-error" hidden><i data-icon="x"></i> <span>Your message couldn’t be sent. Please try again, or email me directly at bear12689@gmail.com.</span></p>
 </form>
-    <p class="body contact__direct">or you can contact me directly via <span class="zc-link contact__email">admin@zoecao.com</span> <button class="zc-btn zc-btn--secondary zc-btn--sm" type="button" id="copy-email">Copy</button></p>
+    <p class="body contact__direct">or you can contact me directly via <a class="zc-link contact__email" href="mailto:bear12689@gmail.com">bear12689@gmail.com</a> <button class="zc-btn zc-btn--secondary zc-btn--sm" type="button" id="copy-email">Copy</button></p>
   </div>
 </section></div></main><footer class="zc-footer"><div class="zc-container zc-footer__inner">
   <p>© 2026 Zoe Cao · Ho Chi Minh City · Design with <span class="zc-footer__heart"><i data-icon="heart" data-fill="true" aria-label="love"></i></span> and intention</p>
@@ -671,6 +677,25 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     });
   }
 
+  /* ContactForm: posts the validated data as JSON to endpoint, shows the -done or -error Notice, resets on success.
+     extra: fields merged into the payload (e.g. _subject). Honeypot: a filled _honey field silently skips sending. */
+  function sendForm(form, endpoint, data, extra) {
+    var btn = form.querySelector('[type="submit"]'), done = document.getElementById(form.id + '-done'), fail = document.getElementById(form.id + '-error');
+    var honey = form.querySelector('[name="_honey"]');
+    if (done) done.hidden = true; if (fail) fail.hidden = true;
+    if (honey && honey.value) { if (done) done.hidden = false; form.reset(); return Promise.resolve(); }
+    var payload = {}, k;
+    for (k in data) if (k !== 'consent') payload[k] = data[k];
+    for (k in (extra || {})) payload[k] = typeof extra[k] === 'function' ? extra[k](data) : extra[k];
+    var label = btn ? btn.innerHTML : '';
+    if (btn) { btn.setAttribute('aria-busy', 'true'); btn.disabled = true; btn.textContent = 'Sending…'; }
+    return fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || j.success === false || j.success === 'false') throw new Error(j.message || r.status); return j; }); })
+      .then(function () { form.reset(); if (done) { done.hidden = false; done.focus && done.setAttribute('tabindex', '-1'); done.focus(); } })
+      .catch(function () { if (fail) fail.hidden = false; })
+      .then(function () { if (btn) { btn.removeAttribute('aria-busy'); btn.disabled = false; btn.innerHTML = label; } });
+  }
+
   /* ---------- Templates ---------- */
   /* Detail: draws a hairline under the pinned back link once it sticks under the nav. */
   function initDetail(root) {
@@ -682,7 +707,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     window.addEventListener('scroll', update, { passive: true }); update();
   }
 
-  window.ZoeCao = { version: '2.0.0', icons: Object.keys(ICONS), icon: icon, hydrateIcons: hydrateIcons, initButtonGroup: initButtonGroup, initToc: initToc, initNav: initNav, initForm: initForm, initDetail: initDetail };
+  window.ZoeCao = { version: '2.0.0', icons: Object.keys(ICONS), icon: icon, hydrateIcons: hydrateIcons, initButtonGroup: initButtonGroup, initToc: initToc, initNav: initNav, initForm: initForm, sendForm: sendForm, initDetail: initDetail };
 })();
 
 </script>
@@ -716,13 +741,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   Z.initButtonGroup(document.querySelector('[data-page="projects"] .zc-button-group--filter'), document.querySelectorAll('#all-projects .zc-media-row'));
   Z.initButtonGroup(document.querySelector('[data-page="course-8-14"] .zc-button-group--filter'), document.querySelectorAll('[data-page="course-8-14"] [data-category]'));
   var form = document.getElementById('contact-form');
-  Z.initForm(form, function () { document.getElementById('contact-form-done').hidden = false; });
+  var TOPIC_LABELS = { project: 'New project', learn: 'Design course', other: 'Other' };
+  Z.initForm(form, function (data) {
+    Z.sendForm(form, 'https://formsubmit.co/ajax/bear12689@gmail.com', data, {
+      topic: function (d) { return TOPIC_LABELS[d.topic] || d.topic; },
+      _subject: function (d) { return 'zoecao.com — ' + (TOPIC_LABELS[d.topic] || 'Message') + ' from ' + d.firstName + (d.lastName ? ' ' + d.lastName : ''); },
+      _replyto: function (d) { return d.email; },
+      _template: 'table',
+      _captcha: 'false'
+    });
+  });
   document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('[data-topic]'); if (a) { var sel = document.getElementById('c-topic'); if (sel) sel.value = a.getAttribute('data-topic'); } });
   var copy = document.getElementById('copy-email');
   copy.addEventListener('click', function () {
     var done = function () { copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = 'Copy'; }, 1600); };
     var fallback = function () { var r = document.createRange(); r.selectNodeContents(document.querySelector('.contact__email')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = 'Press Ctrl/⌘ + C'; };
-    try { navigator.clipboard.writeText('admin@zoecao.com').then(done, fallback); } catch (e) { fallback(); }
+    try { navigator.clipboard.writeText('bear12689@gmail.com').then(done, fallback); } catch (e) { fallback(); }
   });
   document.querySelectorAll('[data-scroll]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); var t = document.getElementById(a.getAttribute('data-scroll')); if (t) t.scrollIntoView({ behavior: 'smooth' }); }); });
   window.addEventListener('hashchange', route);
