@@ -4,17 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFFFFF">
+
+<title>Zoe Cao Portfolio</title>
+<meta name="description" content="Zoe Cao — UI/UX và product designer tại TP. Hồ Chí Minh.">
+<link rel="canonical" href="https://zoecao.com/vi/">
+<link rel="alternate" hreflang="en" href="https://zoecao.com/">
+<link rel="alternate" hreflang="vi" href="https://zoecao.com/vi/">
+<link rel="alternate" hreflang="x-default" href="https://zoecao.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zoe Cao">
 <meta property="og:title" content="Zoe Cao — UI/UX &amp; Product Designer">
 <meta property="og:description" content="Case study, nhật ký thiết kế và các khóa học thiết kế online của Zoe Cao, product designer tại TP. Hồ Chí Minh.">
 <meta property="og:image" content="https://zoecao.com/img/fci-hero.jpg">
 <meta property="og:url" content="https://zoecao.com/vi/">
 <meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/img/zoe-logo.png">
-<link rel="canonical" href="https://zoecao.com/vi/">
-<title>Zoe Cao Portfolio</title>
-<meta name="description" content="Zoe Cao — UI/UX và product designer tại TP. Hồ Chí Minh.">
-<link rel="alternate" hreflang="en" href="https://zoecao.com/">
-<link rel="alternate" hreflang="vi" href="https://zoecao.com/vi/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
@@ -808,6 +813,17 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 (function () {
   var Z = window.ZoeCao;
   var LANG = 'vi', UI = {"copied": "Đã chép", "press": "Nhấn Ctrl/⌘ + C", "copy": "Sao chép"};
+  // Own URLs for the case study and diary entries (/diary/…/), live on the real site only; the claude.ai preview keeps #hash routing.
+  var ROUTES = {"fci-smartcloud": "/vi/projects/fci-smartcloud/", "diary-01": "/vi/diary/good-design-leaves-room-to-breathe/", "diary-02": "/vi/diary/a-skein-of-yarn-and-a-quiet-evening/", "diary-03": "/vi/diary/the-small-details-that-make-ux-feel-human/", "diary-04": "/vi/diary/learning-to-see-through-a-paintbrush/", "diary-05": "/vi/diary/design-is-not-just-about-what-we-add/", "diary-06": "/vi/diary/things-my-cat-would-change-about-my-designs/", "diary-07": "/vi/diary/crochet-and-the-art-of-starting-over/", "diary-08": "/vi/diary/color-is-a-feeling-before-it-is-a-system/", "diary-09": "/vi/diary/a-little-corner-for-things-i-make-slowly/", "diary-10": "/vi/diary/designing-with-more-kindness/"}, OTHER_ROUTES = {"fci-smartcloud": "/projects/fci-smartcloud/", "diary-01": "/diary/good-design-leaves-room-to-breathe/", "diary-02": "/diary/a-skein-of-yarn-and-a-quiet-evening/", "diary-03": "/diary/the-small-details-that-make-ux-feel-human/", "diary-04": "/diary/learning-to-see-through-a-paintbrush/", "diary-05": "/diary/design-is-not-just-about-what-we-add/", "diary-06": "/diary/things-my-cat-would-change-about-my-designs/", "diary-07": "/diary/crochet-and-the-art-of-starting-over/", "diary-08": "/diary/color-is-a-feeling-before-it-is-a-system/", "diary-09": "/diary/a-little-corner-for-things-i-make-slowly/", "diary-10": "/diary/designing-with-more-kindness/"};
+  var ROOT = LANG === 'vi' ? '/vi/' : '/', OTHER_ROOT = LANG === 'vi' ? '/' : '/vi/';
+  var PRETTY = /(^|\.)zoecao\.com$|\.pages\.dev$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+  function urlFor(id, routes, root) { return routes[id] || (id === 'home' ? root : root + '#' + id); }
+  function idFromLocation() {
+    var h = location.hash.slice(1);
+    if (h) return h;
+    if (PRETTY) for (var k in ROUTES) if (ROUTES[k] === location.pathname) return k;
+    return 'home';
+  }
   var TITLES = {"home": "Zoe Cao — UI/UX & Product Designer", "projects": "Dự án — Zoe Cao", "fci-smartcloud": "FCI SmartCloud — Zoe Cao", "about": "Giới thiệu — Zoe Cao", "contact": "Liên hệ — Zoe Cao", "course": "Khóa học thiết kế — Zoe Cao", "course-8-14": "Khóa học thiết kế, 8–14 tuổi — Zoe Cao", "course-15-adult": "Khóa học thiết kế, 15 tuổi đến người lớn — Zoe Cao", "diary": "Nhật ký thiết kế — Zoe Cao", "diary-01": "Thiết kế tốt luôn dành chỗ cho những khoảng thở — Zoe Cao", "diary-02": "Một cuộn len và buổi tối thật yên — Zoe Cao", "diary-03": "Những chi tiết nhỏ khiến trải nghiệm trở nên gần gũi hơn — Zoe Cao", "diary-04": "Học cách quan sát qua từng nét cọ — Zoe Cao", "diary-05": "Thiết kế không chỉ nằm ở những gì chúng ta thêm vào — Zoe Cao", "diary-06": "Những điều thú cưng của mình có lẽ sẽ thay đổi trong thiết kế — Zoe Cao", "diary-07": "Đan móc và nghệ thuật bắt đầu lại — Zoe Cao", "diary-08": "Màu sắc là cảm xúc trước khi trở thành một hệ thống — Zoe Cao", "diary-09": "Một góc nhỏ dành cho những thứ mình làm thật chậm — Zoe Cao", "diary-10": "Thiết kế bằng nhiều sự tử tế hơn — Zoe Cao"};
   var NAV = { diary: 'diary', home: 'home', projects: 'projects', 'fci-smartcloud': 'projects', about: 'about', contact: 'contact', course: 'course', 'course-8-14': 'course', 'course-15-adult': 'course' };
   Object.keys(TITLES).forEach(function (k) { if (k.indexOf('diary') === 0) NAV[k] = 'diary'; });
@@ -816,24 +832,38 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
   var langLinks = document.querySelectorAll('[data-lang-link]');
   langLinks.forEach(function (a) { a.setAttribute('data-base', a.getAttribute('href')); a.addEventListener('click', function () { try { localStorage.setItem(LANG_KEY, a.getAttribute('data-lang-link')); } catch (e) {} }); });
-  if (saved && saved !== LANG) { var go = document.querySelector('[data-lang-link="' + saved + '"]'); if (go) { location.replace(go.getAttribute('href') + location.hash); return; } }
+  if (saved && saved !== LANG) { var go = document.querySelector('[data-lang-link="' + saved + '"]'); if (go) { location.replace(PRETTY ? urlFor(idFromLocation(), OTHER_ROUTES, OTHER_ROOT) : go.getAttribute('href') + location.hash); return; } }
   var navLinks = document.querySelectorAll('.zc-nav__links a[data-nav]');
+  var current = null;
   function show(id) {
+    current = id;
     for (var i = 0; i < pages.length; i++) pages[i].classList.toggle('is-active', pages[i].getAttribute('data-page') === id);
     for (var j = 0; j < navLinks.length; j++) { if (navLinks[j].getAttribute('data-nav') === NAV[id]) navLinks[j].setAttribute('aria-current', 'page'); else navLinks[j].removeAttribute('aria-current'); }
     document.title = TITLES[id] || TITLES.home;
-    langLinks.forEach(function (a) { a.setAttribute('href', a.getAttribute('data-base') + '#' + id); });
+    langLinks.forEach(function (a) { var own = a.getAttribute('data-lang-link') === LANG; a.setAttribute('href', !PRETTY ? a.getAttribute('data-base') + '#' + id : own ? urlFor(id, ROUTES, ROOT) : urlFor(id, OTHER_ROUTES, OTHER_ROOT)); });
     setTimeout(function () { window.dispatchEvent(new Event('scroll')); }, 0);
   }
   function route() {
-    var id = (location.hash || '#home').slice(1);
+    var id = idFromLocation();
     if (!document.querySelector('[data-page="' + id + '"]')) {
       var el = document.getElementById(id);
-      if (el) { var host = el.closest('[data-page]'); if (host && !host.classList.contains('is-active')) show(host.getAttribute('data-page')); el.scrollIntoView(); return; }
+      if (el) { var host = el.closest('[data-page]'); if (host && host.getAttribute('data-page') !== current) show(host.getAttribute('data-page')); el.scrollIntoView(); return; }
       id = 'home';
     }
+    // Old #links (and /index.html) move to the page's own URL.
+    if (PRETTY && urlFor(id, ROUTES, ROOT) !== location.pathname + location.hash) history.replaceState(null, '', urlFor(id, ROUTES, ROOT));
     show(id); window.scrollTo(0, 0);
   }
+  // On the real site, in-page #links change the URL with the History API, so /diary/…/ pages stay on their own address.
+  document.addEventListener('click', function (e) {
+    if (!PRETTY || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest && e.target.closest('a[href^="#"]'), id = a && a.getAttribute('href').slice(1);
+    if (!id) return;
+    e.preventDefault();
+    history.pushState(null, '', document.querySelector('[data-page="' + id + '"]') ? urlFor(id, ROUTES, ROOT) : location.pathname + '#' + id);
+    route();
+  });
+  window.addEventListener('popstate', route);
   Z.hydrateIcons(document);
   Z.initNav(document.querySelector('.zc-nav'));
   Z.initDetail();

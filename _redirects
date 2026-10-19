@@ -9,8 +9,8 @@
 /blog /#diary 301
 /blog.html /#diary 301
 /diary /#diary 301
-/case-study-fci-smartcloud.html /#fci-smartcloud 301
-/case-study-fci-smartcloud      /#fci-smartcloud 301
+/case-study-fci-smartcloud.html /projects/fci-smartcloud/ 301
+/case-study-fci-smartcloud      /projects/fci-smartcloud/ 301
 /case-study-data-suite.html     /#projects       301
 /case-study-data-suite          /#projects       301
 /case-study-glite.html          /#projects       301
