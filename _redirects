@@ -6,3 +6,6 @@
 /about           /#about             301
 /contact.html    /#contact           301
 /contact         /#contact           301
+/blog /#diary 301
+/blog.html /#diary 301
+/diary /#diary 301
