@@ -1,0 +1,8 @@
+# Old multi-page URLs → sections of the new one-page site
+/work.html       /#projects          301
+/work            /#projects          301
+/projects.html   /#projects          301
+/about.html      /#about             301
+/about           /#about             301
+/contact.html    /#contact           301
+/contact         /#contact           301
